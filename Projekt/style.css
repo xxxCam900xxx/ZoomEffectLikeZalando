@@ -53,7 +53,7 @@ div {
 }
 
 img {
-    width: 500px;
+    height: 100%;
 }
 
 .mainImage img:hover {
@@ -63,4 +63,13 @@ img {
 .sideImages img {
     height: 100px;
     width: 70px;
+}
+
+.containerbox {
+    width: 500px;
+    height: 500px;
+    aspect-ratio: 1;
+    background-color: rgb(208, 208, 208);
+    display: flex;
+    justify-content: center;
 }
