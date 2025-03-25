@@ -22,23 +22,24 @@ function showImage(image) {
 showImage();
 
 // Hover Effect
-let zoomableContainers = document.querySelectorAll('picture');
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".containerzoom");
+    const images = document.querySelectorAll("picture img");
 
-zoomableContainers.forEach(element => {
-    let img = element.querySelector('img');
-
-    element.addEventListener("mousemove", (e) => {
-        const rect = element.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        img.style.transformOrigin = `${x}px ${y}px`;
-        img.style.transform = "scale(3)";
-        img.style.transition = "transform 0.2s ease-out"; // Smooth zoom effect
+    container.addEventListener("mousemove", function (e) {
+        const { left, top, width, height } = container.getBoundingClientRect();
+        const x = ((e.clientX - left) / width) * 100;
+        const y = ((e.clientY - top) / height) * 100;
+        
+        images.forEach(img => {
+            img.style.transformOrigin = `${x}% ${y}%`;
+            img.style.transform = "scale(3)";
+        });
     });
 
-    element.addEventListener("mouseleave", () => {
-        img.style.transformOrigin = "center center";
-        img.style.transform = "scale(1)";
+    container.addEventListener("mouseleave", function () {
+        images.forEach(img => {
+            img.style.transform = "scale(1)";
+        });
     });
 });
